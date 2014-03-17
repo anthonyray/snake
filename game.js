@@ -36,7 +36,7 @@ Game.keys = {
 }
 
 Game.prototype.start = function(){
-  var self = this, fps = 40, interval = 1000/fps ; 
+  var self = this, fps = 20, interval = 1000/fps ; 
 
   setInterval(function(){
     self.update();

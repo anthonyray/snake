@@ -1,14 +1,14 @@
 function SnakeHead(){
 	Entity.call(this);
-	this.width = 20;
-	this.height = 20;
+	this.width = 15;
+	this.height = 15;
 }
 
 SnakeHead.prototype = Object.create(Entity.prototype);
 SnakeHead.prototype.constructor = SnakeHead;
 
 SnakeHead.prototype.update = function(){
-	
+	var snakehead = this;
 	var speed = this.width;
 
 	if (game.keyPressed.up && !(this.yVelocity == speed)){
@@ -38,7 +38,18 @@ SnakeHead.prototype.update = function(){
 		this.y = game.height + this.height;	
 
 
-	
+	// Intersection 
+
+	for (var i = 1 ; i < game.snake.body.length ; i++){
+		if(this.intersect(game.snake.body[i]))
+			console.log('intersection');
+	}
+
+	game.foodgrid.entities.forEach(function(food){
+		if( snakehead.intersect(food) )
+			game.snake.eat(food);
+	});
+
 	Entity.prototype.update.apply(this,arguments);
 
 

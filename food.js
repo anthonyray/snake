@@ -1,11 +1,12 @@
-function Food(){
+function Food(x,y){
 	Entity.call(this);
-	this.width = 20;
-	this.height = 20;
+	this.width = 15;
+	this.height = 15;
 	this.xVelocity = 0;
 	this.yVelocity = 0;
-	this.x = Math.floor(Math.random() * (game.width / this.width) )*this.width;
-	this.y = Math.floor(Math.random() * (game.height / this.width) )*this.width;
+	this.x = x;
+	this.y = y
+
 }
 
 Food.prototype = Object.create(Entity.prototype);

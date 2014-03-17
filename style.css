@@ -1,0 +1,32 @@
+body{
+	background: #2c3e50;
+	color : white;
+	font-family : 'Raleway',sans-serif;
+}
+
+h1
+{
+	text-align: center;
+	font-size:5em;
+}
+
+h2
+{
+	text-align: center;
+}
+
+#canvas-container {
+   width: 100%;
+   text-align:center;
+}
+
+canvas {
+   display: inline;
+}
+
+#score
+{
+	background-color : #1abc9c;
+	padding : 5px;
+	border-radius: 10px;
+}

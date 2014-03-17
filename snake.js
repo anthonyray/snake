@@ -30,9 +30,20 @@ Snake.prototype.draw = function(context){
 	});
 }
 
-Snake.prototype.eat = function(element){
+Snake.prototype.eat = function(food){
+	// Append a snake element to the body of the snake
+	var element = new SnakeElement();
 	element.x = this.body[this.body.length - 1].x - this.body[this.body.length - 1].width;
 	element.y = this.y; 
 	this.body.push(element);
-	this.moveQueue.push({xVelocity : element.xVelocity, yVelocity : element.yVelocity});
+	this.moveQueue.push({xVelocity : element.xVelocity, yVelocity : element.yVelocity}); 
+
+	// Remove the eaten food from the foodgrid
+
+	game.foodgrid.destroy(food);
+	game.foodgrid.spawn();
+
+	// Increase score
+
+	game.score.increase();
 }
