@@ -34,3 +34,30 @@ Game.keys = {
   39: 'right',
   40: 'down'
 }
+
+Game.prototype.start = function(){
+  var self = this, fps = 40, interval = 1000/fps ; 
+
+  setInterval(function(){
+    self.update();
+    self.draw();
+  },interval);
+}
+
+Game.prototype.update = function(){
+  var self = this;
+  this.entities.forEach(function(entity){
+    if(entity.update)
+      entity.update();
+  });
+}
+
+Game.prototype.draw = function(){
+  var self = this;
+  this.entities.forEach(function(entity){
+    if (entity.draw){
+      entity.draw(self.context);
+    }
+    
+  });
+}

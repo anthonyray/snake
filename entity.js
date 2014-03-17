@@ -8,8 +8,8 @@ function Entity() {
   this.y = 0
 
   // Dimensions
-  this.width = 0
-  this.height = 0
+  this.width = 20
+  this.height = 20
 
   // A velocity: speed with direction
   this.xVelocity = 0
