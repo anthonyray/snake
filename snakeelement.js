@@ -1,7 +1,6 @@
 function SnakeElement(){
 	Entity.call(this);
-	this.width = 15;
-	this.height = 15;
+
 	this.xVelocity = 0;
 	this.yVelocity = 0;
 }

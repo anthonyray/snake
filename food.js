@@ -1,7 +1,6 @@
-function Food(x,y){
+function Food(x,y){ // Food are entities that pop up randomly on the map. 
 	Entity.call(this);
-	this.width = 15;
-	this.height = 15;
+
 	this.xVelocity = 0;
 	this.yVelocity = 0;
 	this.x = x;

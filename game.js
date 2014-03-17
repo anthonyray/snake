@@ -61,3 +61,19 @@ Game.prototype.draw = function(){
     
   });
 }
+
+Game.prototype.init = function() { // Function used to initialize the game and to restard it when the player looses. 
+  game.entities = [
+    new Background(),
+    game.snake = new Snake(),
+    game.foodgrid = new FoodGrid()
+  ];
+
+  game.score = new Score();
+  game.snake.body = [new SnakeHead()];
+
+  game.snake.eat(new SnakeElement());
+  game.snake.eat(new SnakeElement());
+  game.snake.eat(new SnakeElement());
+  game.snake.eat(new SnakeElement());
+}
