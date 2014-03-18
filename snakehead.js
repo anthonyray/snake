@@ -27,14 +27,14 @@ SnakeHead.prototype.update = function(){
 		this.yVelocity = 0;
 	}
 
-	if (this.x >= game.width)
-		this.x = -this.width;
-	if (this.x < -this.width)
-		this.x = game.width;
+	if (this.x > game.width)
+		game.init();
+	if (this.x < 0)  
+		game.init();
 	if (this.y > game.height)
-		this.y = -this.width;
-	if (this.y < -this.height)
-		this.y = game.height + this.height;	
+		game.init();
+	if (this.y < 0)
+		game.init();
 
 
 	// Intersection with the snake itself
@@ -45,7 +45,7 @@ SnakeHead.prototype.update = function(){
 	}
 
 	// Checking for intersection with food
-	
+
 	game.foodgrid.entities.forEach(function(food){
 		if( snakehead.intersect(food) )
 			game.snake.eat(food);
