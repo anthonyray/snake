@@ -35,15 +35,6 @@ Game.keys = {
   40: 'down'
 }
 
-Game.prototype.start = function(){
-  var self = this, fps = 20, interval = 1000/fps ; 
-
-  setInterval(function(){
-    self.update();
-    self.draw();
-  },interval);
-}
-
 Game.prototype.update = function(){
   var self = this;
   this.entities.forEach(function(entity){
@@ -76,4 +67,43 @@ Game.prototype.init = function() { // Function used to initialize the game and t
   game.snake.eat(new SnakeElement());
   game.snake.eat(new SnakeElement());
   game.snake.eat(new SnakeElement());
+}
+
+Game.prototype.start = function() {
+  var self = this;
+
+  this.lastUpdateTime = new Date().getTime(); // Get the current time
+
+  onFrame(function() {
+    self.fixedTimeStep()
+  });
+}
+
+var onFrame = function(callback) {
+  if (window.requestAnimationFrame){ // Make sure the browser has this function
+    requestAnimationFrame(function() {
+      callback();
+      onFrame(callback)
+    });
+  } else {
+    var fps = 20;
+    setInterval(callback,1000 / fps);
+  }
+}
+
+Game.prototype.fixedTimeStep = function() {
+  var fps = 25,
+      interval = 1000 / fps, 
+      updated = false;
+
+  // While we're not up to date 
+  while (this.lastUpdateTime < new Date().getTime()) {
+    this.update();
+    updated = true;
+    // Jumping at fixed interval until we catch up the current time
+    this.lastUpdateTime += interval;
+  }
+
+  if (updated) this.draw()
+  updated = false;
 }
